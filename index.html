@@ -6,29 +6,30 @@
         <title>vieux.fr</title>
         <meta name="description" content="vieux.fr: Victor Vieux software engineer at OpenSea.io">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-	<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/manifest.json">
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-	<meta name="theme-color" content="#ffffff">    
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">    
         <style>
-	    @import url('//fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600');
+	          @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600');
             html, body {
                 background-color: #eee;
                 margin: 10px;
                 padding: 10px;
+                text-align: center;
                 font-size: 1.0em;
                 font-family: Source Code Pro;
             }
@@ -38,9 +39,11 @@
                 vertical-align: middle;
             }
             a:link {
+                color:blue;
                 text-decoration: none;
             }
             a:visited {
+                color:blue;
                 text-decoration: none;
             }
             a:hover {
@@ -56,24 +59,28 @@
                 height: 16px;
                 padding-right: 2px;
             }
-            #resume {
-                color: #b00;
+            .avatar {
+                height: 256px;
+                border-radius: 14%;
+                border: 1px solid #ccc;
             }
         </style>
     </head>
     <body>
         <header>
+        <img class="avatar" src="imgs/avatar.png" />
         <h2>Victor Vieux</h2>
-        <h3>French Software Engineer at <a href="https://opensea.io" target="_blank"><img id="opensea" src="imgs/opensea.png" />OpenSea</a>,<br/>previously at <a href="https://getcruise.com" target="_blank"><img id="cruise" src="imgs/cruise.png" />cruise</a> and <a href="https://docker.com" target="_blank"><img id="docker" src="imgs/docker.png" />docker</a>, living in San Francisco</h3>
+        <h3>French Software Engineer living in San Francisco</h3>
         </header>
         
         <main>
         <h4>Bio</h4>
         <dl>
-          <p>In 2009 I worked on mobile (Android + backend) developmenent at several startups in Paris.<br>
-	    I then moved to the Bay Area to join Docker in 2013, to grow the adoption of container technology.<br>
-	    In 2018, I took on a new challange in joining Cruise to help build a self-driving rideshare service.<br>
-	    Recently, in 2022, I joined OpenSea to help shape the future of the NFT/web3 ecosystem.
+          <p>
+            Starting from 2009,  I worked on mobile (Android + backend) developmenent at several startups in Paris.<br>
+	          In 2013, I relocated to the Bay Area and joined <a href="https://docker.com" target="_blank">Docker</a> to grow the adoption of container technology.<br>
+	          Later, in 2018, I took on a new challenge at <a href="https://getcruise.com" target="_blank">Cruise</a> where I helped build a self-driving rideshare service.<br>
+	          Recently, in 2022, I began working at <a href="https://opensea.io" target="_blank">OpenSea</a> to help shape the future of the NFT/web3 ecosystem.
             </p>
         </dl>
         
@@ -81,9 +88,9 @@
         <dl>
             <dt><a href="https://github.com/vieux" rel="me" target="_blank"><img class="icon" src="imgs/github.png"/>github.com/vieux</a></dt>
 
-	    <!-- <dt><a href="https://keybase.io/vieux" rel="me" target="_blank"><img class="icon" src="imgs/keybase.png"/>keybase.io/vieux</a></dt> -->
+	          <!-- <dt><a href="https://keybase.io/vieux" rel="me" target="_blank"><img class="icon" src="imgs/keybase.png"/>keybase.io/vieux</a></dt> -->
 
-	    <dt><a href="https://twitter.com/vieux" rel="me" target="_blank"><img class="icon" src="imgs/twitter.png"/>twitter.com/vieux</a></dt>
+	           <!-- <dt><a href="https://twitter.com/vieux" rel="me" target="_blank"><img class="icon" src="imgs/twitter.png"/>twitter.com/vieux</a></dt> -->
 
             <dt><a href="https://linkedin.com/in/vieux" rel="me" target="_blank"><img class="icon" src="imgs/linkedin.png">linkedin.com/vieux</a></dt>
 
@@ -107,10 +114,10 @@
             <dt><a href="https://vrgl117.games" target="_blank">vrgl117.games</a></dt>
             <dd>Video Games for Retro Consoles.</dd>
 
-            <dt><a href="https://gocover.io" target="_blank">GoCover.io</a> (<a href="https://github.com/vieux/gocover.io" target="_blank">source</a>)</dt>
+            <dt><a href="https://github.com/vieux/gocover.io" target="_blank">GoCover.io</a> (archived)</dt>
             <dd>Code coverage of any <a href="http://golang.org" target="_blank">golang</a> package as a service.</dd>
             
-            <dt><a href="https://github.com/VoltFramework/volt" target="_blank">Volt</a></dt>
+            <dt><a href="https://github.com/VoltFramework/volt" target="_blank">Volt</a> (archived)</dt>
             <dd>A simple <a href="https://mesos.apache.org" target="_blank">Mesos</a> framework written in <a href="http://golang.org" target="_blank">Go</a>.</dd>
             
             <!-- <dt><a href="http://vieux.github.io/hnefatafl" target="_blank">Hnefatafl</a> (<a href="https://github.com/vieux/hnefatafl" target="_blank">source</a>)</dt>
