@@ -1,103 +1,146 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>vieux.fr</title>
-        <meta name="description" content="vieux.fr: Victor Vieux software engineer at OpenSea.io">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-        <meta name="theme-color" content="#ffffff">    
-        <style>
-	          @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600');
-            html, body {
-                background-color: #eee;
-                margin: 10px;
-                padding: 10px;
-                text-align: center;
-                font-size: 1.0em;
-                font-family: Source Code Pro;
-            }
-            .icon {
-                height: 16px;
-                padding: 2px 2px 2px;
-                vertical-align: middle;
-            }
-            a:link {
-                color:blue;
-                text-decoration: none;
-            }
-            a:visited {
-                color:blue;
-                text-decoration: none;
-            }
-            a:hover {
-                text-decoration: underline;
-            }
-            a:active {
-                text-decoration: underline;
-            }
-            footer {
-                font-size: 0.4em;
-            }
-            #docker, #cruise, #opensea{
-                height: 16px;
-                padding-right: 2px;
-            }
-            .avatar {
-                height: 256px;
-                border-radius: 14%;
-                border: 1px solid #ccc;
-            }
-        </style>
-    </head>
-    <body>
-        <header>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>vieux.fr</title>
+    <meta name="description" content="vieux.fr: Victor Vieux French Software Engineer living in San Francisco">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="imgs/avatar.png">
+    <link rel="icon" type="image/png" href="imgs/avatar.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600');
+
+        :root {
+            --bg-color: #eee;
+            --text-color: #000;
+            --link-color: #2962ff;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #222;
+            --text-color: #fff;
+            --link-color: #66b3ff;
+        }
+
+        html, body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            font-size: 1.0em;
+            font-family: Source Code Pro;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid var(--text-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            cursor: pointer;
+            font-family: Source Code Pro;
+        }
+        .icon {
+            height: 16px;
+            padding: 2px 2px 2px;
+            vertical-align: middle;
+        }
+        a:link {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        a:visited {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        a:active {
+            text-decoration: underline;
+        }
+        footer {
+            font-size: 0.7em;
+        }
+        #docker, #cruise, #opensea {
+            height: 16px;
+            padding-right: 2px;
+        }
+        .avatar {
+            height: 256px;
+            border-radius: 14%;
+            border: 1px solid var(--background-color);
+        }
+    </style>
+</head>
+<body>
+    <button id="theme-toggle">☀️</button>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+        function setTheme(isDark) {
+            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '🌙' : '☀️';
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme === 'dark');
+        } else {
+            setTheme(prefersDark.matches);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            setTheme(!isDark);
+        });
+    </script>
+    <header>
         <img class="avatar" src="imgs/avatar.png" />
         <h2>Victor Vieux</h2>
         <h3>French Software Engineer living in San Francisco</h3>
-        </header>
-        
-        <main>
+    </header>
+
+    <main>
         <h4>Bio</h4>
         <dl>
-          <p>
-            Starting from 2009,  I worked on mobile (Android + backend) developmenent at several startups in Paris.<br>
-	          In 2013, I relocated to the Bay Area and joined <a href="https://docker.com" target="_blank">Docker</a> to grow the adoption of container technology.<br>
-	          After this, in 2018, I took on a new challenge at <a href="https://getcruise.com" target="_blank">Cruise</a> where I helped build a self-driving rideshare service.<br>
-		  Later, in 2022, I began working at <a href="https://opensea.io" target="_blank">OpenSea</a> to help shape the future of the NFT/web3 ecosystem.<br>
-		  Currently, I'm the Head of Engineering at <a href="https://joinformal.com" target="_blank">Formal</a>, a modern protocol-aware reverse-proxy for datastores and APIs.
+            <p>
+                Starting from 2009, I worked on mobile (Android + backend) developmenent at several startups in
+                Paris.<br>
+                In 2013, I relocated to the Bay Area and joined <a href="https://docker.com" target="_blank">Docker</a>
+                to grow the adoption of container technology.<br>
+                After this, in 2018, I took on a new challenge at <a href="https://getcruise.com"
+                    target="_blank">Cruise</a> where I helped build a self-driving rideshare service.<br>
+                Later, in 2022, I began working at <a href="https://opensea.io" target="_blank">OpenSea</a> to help
+                shape the future of the NFT/web3 ecosystem.<br>
+                Currently, I'm the Head of Engineering at <a href="https://joinformal.com" target="_blank">Formal</a>, a
+                modern protocol-aware reverse-proxy for datastores and APIs.
             </p>
         </dl>
-        
+
         <h4>Contact</h4>
         <dl>
-            <dt><a href="https://vieux.fr/github" rel="me" target="_blank"><img class="icon" src="imgs/github.png"/>vieux.fr/github</a></dt>
+            <dt><a href="https://vieux.fr/github" rel="me" target="_blank"><img class="icon"
+                        src="imgs/github.png" />vieux.fr/github</a></dt>
 
-            <dt><a href="https://vieux.fr/keybase" rel="me" target="_blank"><img class="icon" src="imgs/keybase.png"/>vieux.fr/keybase</a></dt>
+            <dt><a href="https://vieux.fr/keybase" rel="me" target="_blank"><img class="icon"
+                        src="imgs/keybase.png" />vieux.fr/keybase</a></dt>
 
             <!-- <dt><a href="https://twitter.com/vieux" rel="me" target="_blank"><img class="icon" src="imgs/twitter.png"/>twitter.com/vieux</a></dt> -->
 
-            <dt><a href="https://vieux.fr/linkedin" rel="me" target="_blank"><img class="icon" src="imgs/linkedin.png">vieux.fr/linkedin</a></dt>
+            <dt><a href="https://vieux.fr/linkedin" rel="me" target="_blank"><img class="icon"
+                        src="imgs/linkedin.png">vieux.fr/linkedin</a></dt>
 
             <!-- <dt><a href="https://speakerdeck.com/vieux" rel="me" target="_blank"><img class="icon" src="imgs/speakerdeck.png">speakerdeck.com/vieux</a></dt> -->
         </dl>
-        
+
         <!-- <h4>Main Talks (videos)</h4>
         <dl>
             <dt><a href="https://www.youtube.com/playlist?list=PLkbOBde10hoDKdz53sq2XMaQfCRQyJhC7"><img class="icon" src="imgs/youtube.png"/>PGRE 2019</a></dt>
@@ -117,18 +160,19 @@
 
             <dt><a href="https://github.com/vieux/gocover.io" target="_blank">GoCover.io</a> (archived)</dt>
             <dd>Code coverage of any <a href="http://golang.org" target="_blank">golang</a> package as a service.</dd>
-            
+
             <dt><a href="https://github.com/VoltFramework/volt" target="_blank">Volt</a> (archived)</dt>
-            <dd>A simple <a href="https://mesos.apache.org" target="_blank">Mesos</a> framework written in <a href="http://golang.org" target="_blank">Go</a>.</dd>
-            
+            <dd>A simple <a href="https://mesos.apache.org" target="_blank">Mesos</a> framework written in <a
+                    href="http://golang.org" target="_blank">Go</a>.</dd>
+
             <!-- <dt><a href="http://vieux.github.io/hnefatafl" target="_blank">Hnefatafl</a> (<a href="https://github.com/vieux/hnefatafl" target="_blank">source</a>)</dt>
             <dd>An old viking game, mix between checkers and chess using <a href="http://libgdx.badlogicgames.com/"  target="_blank">libGDX</a>.</dd> -->
-            
+
             <!-- <dt><a href="https://github.com/vieux/livedroid" target="_blank">LiveDroid</a></dt>
             <dd>An open source Android application to explore your Xbox Live games and achievements.</dd> -->
         </dl>
-        </main>
-        
-        <footer>© Victor Vieux 2013-2025 -- <a style="color: red;" href="https://isabeljimenez.com"><3</a></footer>
-    </body>
+    </main>
+
+    <footer>© Victor Vieux 2013-2025 -- <a style="color: red;" href="https://isabeljimenez.com"><3</a></footer>
+</body>
 </html>
