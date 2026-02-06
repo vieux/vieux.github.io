@@ -1,0 +1,324 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Building DamN64: Using LLMs Across Code, Tooling, and Asset Pipelines on the Nintendo 64</title>
+    <meta name="description" content="Building DamN64: Using LLMs Across Code, Tooling, and Asset Pipelines on the Nintendo 64">
+    <meta name="author" content="Victor Vieux">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="../imgs/avatar.png">
+    <link rel="icon" type="image/png" href="../imgs/avatar.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600');
+
+        :root {
+            --bg-color: #eee;
+            --text-color: #000;
+            --link-color: #2962ff;
+            --muted-color: #555;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #222;
+            --text-color: #fff;
+            --link-color: #66b3ff;
+            --muted-color: #ccc;
+        }
+
+        html, body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            font-size: 1.0em;
+            font-family: Source Code Pro;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            padding: 24px;
+        }
+
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid var(--text-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            cursor: pointer;
+            font-family: Source Code Pro;
+        }
+
+        #home-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid var(--text-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: Source Code Pro;
+        }
+
+        a:link,
+        a:visited {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active {
+            text-decoration: underline;
+        }
+
+        main {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+
+        .date {
+            color: var(--muted-color);
+            margin: 6px 0 16px;
+        }
+
+        .byline {
+            color: var(--muted-color);
+            margin: -10px 0 16px;
+        }
+
+        h2 {
+            margin-top: 32px;
+            font-size: 1.2em;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        figure {
+            margin: 24px 0;
+        }
+
+        figure img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #999;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.7em;
+        }
+
+        figcaption {
+            font-size: 0.9em;
+            color: var(--muted-color);
+            margin-top: 8px;
+        }
+
+        ul {
+            line-height: 1.6;
+        }
+    </style>
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="oFqu1sliU6gndcG+zKxXkw" async></script>
+</head>
+<body>
+    <a id="home-link" href="https://vieux.fr" rel="home">Home</a>
+    <button id="theme-toggle">☀️</button>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+        function setTheme(isDark) {
+            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '🌙' : '☀️';
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme === 'dark');
+        } else {
+            setTheme(prefersDark.matches);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            setTheme(!isDark);
+        });
+    </script>
+
+    <main>
+        <h1>Building DamN64: Using LLMs Across Code, Tooling, and Asset Pipelines on the Nintendo 64</h1>
+        <p class="date">February 5, 2026</p>
+        <p class="byline">by <a href="https://vieux.fr" rel="home">Victor Vieux</a></p>
+
+        <figure>
+            <img src="https://github.com/vrgl117-games/DamN64/blob/main/screenshots/title.png?raw=true" alt="DamN64 title screen" />
+            <figcaption>(Hero image: DamN64 gameplay or title screen)</figcaption>
+        </figure>
+
+        <p>I recently built <a href="https://github.com/vrgl117-games/DamN64" target="_blank" rel="noopener">DamN64</a>, an isometric 2D, two-player game for the Nintendo 64, as part of the N64brew Game Jam (submission deadline: February 1st).</p>
+
+        <p>This wasn’t my first jam entry, but it was the first where I deliberately used LLMs across the entire development loop: engine code, gameplay logic, tooling, and asset assembly. The constraints of the N64 made this a good stress test for where LLMs actually provide leverage when abstraction is thin and performance matters.</p>
+
+        <h2>The self-imposed challenges</h2>
+        <p>Compared to my previous jam entries, I raised the bar in a few specific ways:</p>
+        <ul>
+            <li>Isometric 2D rendering on N64 hardware</li>
+            <li>Always-on two-player gameplay</li>
+            <li>A dynamic split-screen camera that smoothly transitions from a single shared view to two independent cameras as players move apart, then stitches back together without snapping</li>
+        </ul>
+
+        <p>The split-screen requirement alone touches camera math, viewport layout, HUD duplication, and fill-rate constraints. On N64, none of that is free.</p>
+
+        <figure>
+            <img src="https://github.com/vrgl117-games/DamN64/blob/main/screenshots/single.png?raw=true" alt="Single-camera gameplay view" />
+            <figcaption>(Single-camera gameplay view)</figcaption>
+        </figure>
+
+        <figure>
+            <img src="https://github.com/vrgl117-games/DamN64/blob/main/screenshots/split.png?raw=true" alt="Dynamic split-screen gameplay view" />
+            <figcaption>(Dynamic split-screen gameplay view)</figcaption>
+        </figure>
+
+        <p>Total dev time was roughly one to two weeks of evenings, which meant anything not directly improving gameplay feel needed to be optimized for iteration speed.</p>
+
+        <h2>LLMs as part of the implementation loop</h2>
+        <p>I used <a href="https://opencode.ai/" target="_blank" rel="noopener">opencode</a> with OpenAI Codex 5.2 and Anthropic Claude Opus 4.5, but very intentionally not as a “generate a game” button.</p>
+
+        <p>The pattern that worked was:</p>
+        <ul>
+            <li>Provide a real, working codebase from previous jam entries</li>
+            <li>Ask the model to operate strictly inside those patterns</li>
+            <li>Treat outputs as drafts to be profiled, trimmed, and reshaped</li>
+        </ul>
+
+        <p>A concrete example is the dam breaking and repair system.</p>
+        <p>This mechanic required:</p>
+        <ul>
+            <li>A small state machine per dam segment</li>
+            <li>Carefully tuned timing for break and repair phases</li>
+            <li>A wave or ripple effect propagating across adjacent segments</li>
+            <li>Predictable per-frame cost</li>
+        </ul>
+
+        <p>The LLMs were useful for:</p>
+        <ul>
+            <li>Enumerating state transitions clearly</li>
+            <li>Proposing initial timing values that were directionally sane</li>
+            <li>Structuring update logic so it was readable and debuggable</li>
+        </ul>
+
+        <p>I then went through and aggressively simplified the generated code. The value wasn’t correctness out of the box, it was collapsing the blank-page phase into something testable in minutes.</p>
+
+        <h2>Context beats clever prompting</h2>
+        <p>The N64 homebrew ecosystem is built around libdragon, and that library is either absent or partially represented in model training data.</p>
+        <p>Cold prompts produced plausible but subtly wrong code.</p>
+
+        <p>What worked was feeding the agent large chunks of previous jam code:</p>
+        <ul>
+            <li>Rendering paths</li>
+            <li>Input handling</li>
+            <li>Fixed-point math conventions</li>
+            <li>Frame timing assumptions</li>
+            <li>Data layout choices</li>
+        </ul>
+
+        <p>Once that context was present, the models stopped hallucinating APIs and started reasoning locally inside the constraints of my engine.</p>
+        <p>This only worked because I treated the LLM like a junior engineer dropped into an existing codebase, not like an expert with perfect global knowledge.</p>
+
+        <h2>Asset creation and tooling: vibecoding with intent</h2>
+        <p>AI didn’t just help with runtime code, it also shaped the creation pipeline.</p>
+        <p>I decided early on to use <a href="https://kenney.nl/assets/isometric-buildings-1" target="_blank" rel="noopener">Kenney.nl isometric assets</a> as a base. They are clean, consistent, and perfect for jam-scale production.</p>
+
+        <p>The missing piece was flexibility: I needed to stack tiles and generate full building sprites quickly, without doing everything manually in an image editor.</p>
+        <p>So I vibecoded ( on <a href="https://replit.com/" target="_blank" rel="noopener">Replit</a> of course) a small <a href="https://isometric-buildings-stacker.replit.app/" target="_blank" rel="noopener">tool</a> that lets me:</p>
+        <ul>
+            <li>Stack isometric tiles</li>
+            <li>Compose full buildings</li>
+            <li>Export ready-to-use PNGs</li>
+        </ul>
+
+        <figure>
+            <a href="https://isometric-buildings-stacker.replit.app/" target="_blank" rel="noopener"><img src="../imgs/stacker.png" alt="Isometric building stacker tool" /></a>
+            <figcaption>(Screenshot of the isometric building stacker tool)</figcaption>
+        </figure>
+
+        <p>The LLMs helped bootstrap the tool quickly, especially around layout logic and UI wiring, while I focused on making sure the output matched my engine’s rendering expectations.</p>
+        <p>This became a recurring pattern in the project: use AI to get tooling “good enough” fast, then spend human time on correctness and integration.</p>
+
+        <h2>The cost of “safe” code on old hardware</h2>
+        <p>One consistent failure mode was over-defensive code generation.</p>
+        <p>LLMs strongly prefer:</p>
+        <ul>
+            <li>Null checks everywhere</li>
+            <li>Extra clamps and bounds checks</li>
+            <li>Readability over instruction count</li>
+        </ul>
+
+        <p>On modern hardware, that’s fine. On the N64, that’s unacceptable in hot paths. There’s no speculative execution or modern branch prediction to hide inefficiencies.</p>
+
+        <p>My workflow became:</p>
+        <ul>
+            <li>Let the model draft logic</li>
+            <li>Identify hot paths</li>
+            <li>Inline, prune, and delete safety nets manually</li>
+        </ul>
+
+        <p>This isn’t a flaw so much as a reminder: LLMs optimize for human expectations, not for bare-metal constraints.</p>
+
+        <h2>An agent skill for emulator-level smoke testing</h2>
+        <p>One of the more experimental pieces was writing a <a href="https://github.com/vrgl117-games/DamN64/raw/refs/heads/main/.opencode/skills/n64-player/SKILL.md" target="_blank" rel="noopener">custom agent skill</a> for lightweight runtime validation.</p>
+
+        <p>On macOS, using:</p>
+        <ul>
+            <li><a href="https://ares-emu.net/" target="_blank" rel="noopener">Ares</a> (N64 emulator)</li>
+            <li>macOS built-in screenshot tooling</li>
+            <li><a href="https://github.com/BlueM/cliclick" target="_blank" rel="noopener">cliclick</a> for deterministic input injection</li>
+        </ul>
+
+        <p>The agent could:</p>
+        <ul>
+            <li>Build the ROM</li>
+            <li>Launch the emulator</li>
+            <li>Send a fixed input sequence</li>
+            <li>Capture a frame</li>
+            <li>Analyze the image to verify expected visual states</li>
+        </ul>
+
+        <p>This didn’t play the game end-to-end, but it was enough to catch broken builds, camera regressions, or missing assets without manual supervision.</p>
+        <p>For a retro project, this felt like adding a very opinionated form of visual smoke testing.</p>
+
+        <h2>What actually changed</h2>
+        <p>The biggest shift wasn’t raw speed, it was where cognitive effort went.</p>
+        <p>With boilerplate, scaffolding, and tooling accelerated, I spent more time on:</p>
+        <ul>
+            <li>Camera behavior</li>
+            <li>Split-screen transitions</li>
+            <li>Animation timing</li>
+            <li>Overall game feel</li>
+        </ul>
+
+        <p>That tradeoff was absolutely worth it under a jam deadline.</p>
+
+        <h2>Takeaway</h2>
+        <p>LLMs are not drop-in solutions for constrained systems. They don’t understand your hardware unless you force that understanding through context and examples.</p>
+        <p>But when treated as context-aware implementation assistants inside a real codebase, they can meaningfully compress iteration loops, even on hardware where every cycle matters.</p>
+        <p>DamN64 shipped because of that compression.</p>
+    </main>
+
+    <footer>© Victor Vieux 2013-2026 -- <a style="color: red;" href="https://isabeljimenez.com"><3</a></footer>
+</body>
+</html>
