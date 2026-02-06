@@ -1,0 +1,9 @@
+# llms.txt
+
+Site: vieux.fr
+Description: Personal site and posts by Victor Vieux.
+Contact: https://vieux.fr/
+
+## Pages
+- https://vieux.fr/
+- https://vieux.fr/damn64/
