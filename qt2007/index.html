@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Restoring My 2007 Qt Apps With Codex</title>
+    <meta name="description" content="Restoring my undocumented Qt applications from 2007 with Codex on an Apple Silicon Mac">
+    <meta name="author" content="Victor Vieux">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="../imgs/avatar.png">
+    <link rel="icon" type="image/png" href="../imgs/avatar.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600');
+
+        :root {
+            --bg-color: #eee;
+            --text-color: #000;
+            --link-color: #2962ff;
+            --muted-color: #555;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #222;
+            --text-color: #fff;
+            --link-color: #66b3ff;
+            --muted-color: #ccc;
+        }
+
+        html, body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            font-size: 1.0em;
+            font-family: Source Code Pro;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            padding: 24px;
+        }
+
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid var(--text-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            cursor: pointer;
+            font-family: Source Code Pro;
+        }
+
+        #home-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid var(--text-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: Source Code Pro;
+        }
+
+        a:link,
+        a:visited {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active {
+            text-decoration: underline;
+        }
+
+        main {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+
+        .date {
+            color: var(--muted-color);
+            margin: 6px 0 16px;
+        }
+
+        .byline {
+            color: var(--muted-color);
+            margin: -10px 0 16px;
+        }
+
+        h2 {
+            margin-top: 32px;
+            font-size: 1.2em;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        figure {
+            margin: 24px 0;
+        }
+
+        figure img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #999;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.7em;
+        }
+
+        figcaption {
+            font-size: 0.9em;
+            color: var(--muted-color);
+            margin-top: 8px;
+        }
+
+        ul {
+            line-height: 1.6;
+        }
+
+        pre {
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: end;
+            gap: clamp(16px, 4vw, 36px);
+            margin: 28px 0 40px;
+        }
+
+        .comparison-item {
+            min-width: 0;
+            text-align: center;
+        }
+
+        .comparison img,
+        .single-shot img {
+            display: block;
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+            border: 0;
+            border-radius: 0;
+            object-fit: contain;
+        }
+
+        .comparison--hbx img {
+            max-height: 430px;
+        }
+
+        .comparison--freetv img {
+            max-height: 540px;
+        }
+
+        .comparison figcaption {
+            margin-top: 12px;
+        }
+
+        .single-shot {
+            max-width: 760px;
+            margin: 28px auto 36px;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 20px;
+            }
+
+            #home-link,
+            #theme-toggle {
+                position: absolute;
+            }
+
+            main {
+                padding-top: 56px;
+            }
+
+            .comparison {
+                grid-template-columns: 1fr;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .comparison--hbx img,
+            .comparison--freetv img {
+                max-height: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a id="home-link" href="https://vieux.fr" rel="home follow">Home</a>
+    <button id="theme-toggle">☀️</button>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+        function setTheme(isDark) {
+            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '🌙' : '☀️';
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme === 'dark');
+        } else {
+            setTheme(prefersDark.matches);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            setTheme(!isDark);
+        });
+    </script>
+
+    <main>
+        <h1>Restoring My 2007 Qt Apps With Codex</h1>
+        <p class="date">July 31, 2026</p>
+        <p class="byline">by <a href="https://vieux.fr/linkedin" rel="me">Victor Vieux</a></p>
+
+        <p>I recently connected an old 2.5-inch notebook hard drive that had been sitting in storage. Among its contents were two C++ projects I wrote in 2007: <code>HbxImg</code> and <code>FreeTvPlayer</code>.</p>
+
+        <p>Both directories contained the usual artifacts of a Linux desktop project from that period: KDevelop files, generated Makefiles, qmake projects, headers, source files, and almost no documentation. I remembered the names, but not what the applications actually did.</p>
+
+        <p>Instead of reading through the code myself, I treated them as software archaeology experiments. Could an AI coding agent identify two undocumented applications, reconstruct their behavior, and make them run on a current Apple Silicon Mac without redesigning them?</p>
+
+        <p><em>I used Codex through the macOS app.</em></p>
+
+        <h2>Investigating before editing</h2>
+
+        <p>Before letting Codex change anything, I initialized a Git repository in each directory and committed the recovered files exactly as I found them.</p>
+
+        <p>Then I asked for a read-only investigation: determine the purpose of each program, map the architecture and execution flow, reconstruct the interface, identify dependencies and the probable build environment, and cite evidence for every conclusion.</p>
+
+        <p>I also asked Codex to label conclusions as proven, inferred, or unknown, so inferred behavior would not be presented as fact.</p>
+
+        <p>Only after Codex had reconstructed both applications from the source did I ask it to make them compile on my Mac, staying as close as possible to the originals.</p>
+
+        <p><em>After the investigation, I used the <a href="https://web.archive.org/" target="_blank" rel="noopener">Wayback Machine</a> to find old screenshots of both applications. They suggest that the files recovered from the hard drive are from earlier versions, which explains some of the differences between the archived screenshots and the restored applications.</em></p>
+
+        <h2>HbxImg: a batch image editor</h2>
+
+        <p>HbxImg was a small utility I had written for preparing images for www.halobox.fr.st, a defunct gaming community I used to manage.</p>
+
+        <p>It loaded multiple images and applied the same sequence of operations to all of them:</p>
+        <ul>
+            <li>Resize</li>
+            <li>Convert to grayscale</li>
+            <li>Mirror</li>
+            <li>Add text</li>
+            <li>Save in one of several image formats</li>
+        </ul>
+
+        <p>The interface was a fixed-size <a href="https://www.qt.io/" target="_blank" rel="noopener">Qt</a> <code>QToolBox</code>, constructed entirely in C++. The generated build artifacts revealed the original environment: Qt 4.2.3, qmake, GCC 4.1.2, KDevelop, and 32-bit Linux on Intel.</p>
+
+        <p>Codex chose Qt 5 as the shortest bridge from Qt 4. It updated the module imports, removed an obsolete style, configured a macOS application bundle, and added a reproducible build script. It did not replace qmake with CMake, swap out the image library, or redesign the UI.</p>
+
+        <p>The main platform incompatibility was image preview. The original code used CImg’s display window, which would have required an additional X11 dependency on macOS. Codex replaced only that boundary: it converted the CImg buffer to a Qt <code>QImage</code> and displayed it in a scrollable Qt dialog.</p>
+
+        <figure class="single-shot">
+            <img src="hbx2026preview.png" alt="HbxImg preview dialog displaying a processed grayscale image" width="1472" height="1268" loading="lazy" decoding="async" />
+            <figcaption>(The restored Qt preview dialog showing a mirrored, black-and-white image)</figcaption>
+        </figure>
+
+        <p>The restoration also exposed old bugs: empty image lists could crash, the progress bar range was wrong, errors could still produce success messages, and thumbnail code could dereference a missing item. I fixed these defects rather than preserving them.</p>
+
+        <p>The result looks recognizably like the 2007 program and can once again load, preview, transform, and save batches of images.</p>
+
+        <figure class="comparison comparison--hbx">
+            <div class="comparison-item">
+                <img src="hbx2007.png" alt="HbxImg running on Linux in 2007" width="440" height="482" loading="lazy" decoding="async" />
+                <figcaption>HbxImg in 2007</figcaption>
+            </div>
+            <div class="comparison-item">
+                <img src="hbx2026.png" alt="HbxImg restored on Apple Silicon macOS in 2026" width="1140" height="1044" loading="lazy" decoding="async" />
+                <figcaption>HbxImg restored in 2026</figcaption>
+            </div>
+        </figure>
+
+        <h2>FreeTvPlayer: a simpler way to watch Freebox TV</h2>
+
+        <p>FreeTvPlayer was a Qt frontend for television service from <a href="https://www.free.fr/" target="_blank" rel="noopener">Free</a>, the French ISP.</p>
+
+        <p>At startup, it downloaded Free’s M3U playlist and displayed the available channels. Selecting a channel opened its stream in VLC.</p>
+
+        <p>The original code downloaded the playlist by passing a <code>wget</code> command to <code>system()</code>. It parsed entries into a fixed-size array, stopped when it reached a particular channel, constructed another shell command beginning with <code>vlc</code>, and passed that to <code>system()</code> too.</p>
+
+        <p>Codex preserved the architecture but repaired the fragile boundaries. <code>QProcess</code> now launches <code>wget</code> and VLC with explicit arguments. Downloads use a temporary file, a timeout, exit-code checks, and keep the previous playlist if an update fails. The parser now reads normal <code>#EXTINF</code> entries instead of depending on the exact channel order from 2007.</p>
+
+        <p>The original interface included REC, PAUSE, and PLAY buttons, although only PLAY had ever been implemented. Codex left the unfinished controls visible but disabled, matching their original state.</p>
+
+        <p>It also found a settings bug that may have survived since 2007. Two Boolean values were written as adjacent characters, but the reader expected two separate lines. The first read consumed the entire file, so the second setting could not be restored. Following both paths made the mismatch obvious.</p>
+
+        <p>FreeTvPlayer now builds and launches, but live television does not work from my current network. The playlist and streams belonged to a specific ISP environment that I no longer have.</p>
+
+        <figure class="comparison comparison--freetv">
+            <div class="comparison-item">
+                <img src="ftp2007.png" alt="FreeTvPlayer running on Linux in 2007" width="215" height="318" loading="lazy" decoding="async" />
+                <figcaption>FreeTvPlayer in 2007</figcaption>
+            </div>
+            <div class="comparison-item">
+                <img src="ftp2026.png" alt="FreeTvPlayer restored on Apple Silicon macOS in 2026" width="644" height="1368" loading="lazy" decoding="async" />
+                <figcaption>FreeTvPlayer restored in 2026</figcaption>
+            </div>
+        </figure>
+
+        <h2>Keeping the original design</h2>
+
+        <p>I did not ask Codex to rewrite these as modern applications. A modernization might have replaced Qt with SwiftUI, qmake with CMake, the fixed layouts with responsive ones, and VLC with embedded playback.</p>
+
+        <p>Instead, the restored code keeps the French interfaces, direct Qt widget construction, fixed layouts, original processing order, qmake projects, and VLC as a separate process. Most new code lives at the boundaries where assumptions from 2007 no longer hold: build discovery, application bundles, process launching, data paths, image preview, and error handling.</p>
+
+        <p>I focused on preserving visible behavior and changed only the defects and platform assumptions that prevented the applications from working.</p>
+
+        <h2>What Codex changed</h2>
+
+        <p>Codex was most useful for understanding the undocumented repositories.</p>
+
+        <p>Codex connected UI labels, signals, file formats, shell commands, generated build artifacts, and configuration code across undocumented projects. It moved from explaining each application as a user would experience it to diagnosing specific C++ and Qt compatibility problems, then built and tested the result.</p>
+
+        <p>The instructions still mattered. A read-only first pass protected the historical evidence. Requiring citations separated facts from guesses. Asking for restoration rather than modernization kept the applications recognizable.</p>
+
+        <p>Both programs now run as native applications on my Apple Silicon Mac. HbxImg is usable again. FreeTvPlayer recreates its original interface, but live playback still depends on the Free ISP network and streams.</p>
+
+        <p>Codex reduced the time required to understand the old code and implement the compatibility changes.</p>
+    </main>
+
+    <footer>© Victor Vieux 2013-2026 -- <a style="color: red;" href="https://isabeljimenez.com">&lt;3</a></footer>
+</body>
+</html>
