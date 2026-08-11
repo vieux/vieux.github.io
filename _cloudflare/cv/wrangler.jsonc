@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cv-vieux-fr",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-08-10",
+  "rules": [
+    {
+      "type": "Data",
+      "globs": ["**/*.pdf"],
+      "fallthrough": true
+    },
+    {
+      "type": "Text",
+      "globs": ["**/*.txt"],
+      "fallthrough": true
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "cv.vieux.fr/*",
+      "zone_name": "vieux.fr"
+    }
+  ]
+}

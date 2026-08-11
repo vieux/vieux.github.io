@@ -1,0 +1,66 @@
+VICTOR VIEUX
+INFRASTRUCTURE & DISTRIBUTED SYSTEMS ENGINEER
+San Francisco, CA | +1 240 668 4389 | victor@vieux.fr | linkedin.com/in/vieux | vieux.fr
+
+PROFILE
+Systems and infrastructure engineer with 15+ years building compute platforms, container
+runtimes, and microVM-based sandboxing. Docker core maintainer and tech lead; built
+deployment and container infrastructure for Cruise's autonomous-vehicle fleet; now
+builds agent sandboxing at Replit. Hands-on engineering leader with deep experience in
+low-level systems, distributed platforms, and production reliability.
+
+EXPERIENCE
+
+REPLIT | San Francisco Bay Area
+Member of Technical Staff  |  2025 - Present
+- Build Replit's compute platform for agent sandboxes, spanning containerization,
+  distributed systems, and production infrastructure.
+
+FORMAL | San Francisco, CA
+Head of Engineering  |  2024 - 2025
+- Grew and led the engineering team from 3 to 8 across San Francisco and Paris.
+- Set technical direction while contributing directly to backend and proxy systems
+  critical to platform performance and reliability.
+
+OPENSEA | San Francisco, CA
+Staff Software Engineer  |  2023 - 2024   /   Senior Software Engineer  |  2022 - 2023
+- Introduced Go and a service-oriented architecture, establishing a foundation for
+  higher-performance, independently scalable services.
+- Delivered end-to-end support for multiple databases, from provisioning through
+  framework integration and application use.
+
+CRUISE | San Francisco, CA
+Senior Software Engineer  |  2018 - 2022
+- Built across the full deployment stack used to ship Cruise software to the autonomous-
+  vehicle fleet, spanning the operating system, system services, and applications.
+- Maintained an in-house Linux distribution built with Buildroot.
+- Designed and maintained a lightweight container engine and process manager for the
+  vehicle platform.
+- Developed the container entrypoint and vehicle-state checks required to start the
+  autonomy stack safely.
+
+DOCKER | San Francisco, CA
+Engineering Manager  |  2017 - 2018   /   Software Engineer  |  2013 - 2017
+- Maintained Docker's core engine as a core maintainer and later tech lead, focusing on
+  low-level systems and container internals.
+- Led the team serving Docker's open-source community and delivering commercial product
+  features while continuing as tech lead.
+- Designed Docker Swarm, formed the distributed systems team, and partnered with
+  Mesosphere to integrate Mesos.
+
+EDUCATION
+
+EPITECH - European Institute of Technology, France
+Master's degree | 2007 - 2010
+
+IUT de Ville d'Avray, France
+Associate's degree (DUT), Computer Science / Electronics | 2005 - 2007
+
+TECHNICAL STRENGTHS
+Distributed systems | Compute platforms | Container runtimes | Linux | Go | Deployment
+infrastructure | Databases | Backend and proxy systems | Engineering leadership
+
+SELECTED AWARDS
+- Won first place with a college team at the Robotics European Championship.
+- Earned second place at the inaugural N64Brew Game Jam, a Nintendo 64 game-development
+  competition.
