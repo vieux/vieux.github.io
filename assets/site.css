@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600');
+
+:root {
+    --bg-color: #eee;
+    --text-color: #000;
+    --link-color: #2962ff;
+    --muted-color: #555;
+}
+
+[data-theme="dark"] {
+    --bg-color: #222;
+    --text-color: #fff;
+    --link-color: #66b3ff;
+    --muted-color: #ccc;
+}
+
+html,
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: Source Code Pro;
+    font-size: 1em;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 8px 12px;
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: Source Code Pro;
+    cursor: pointer;
+}
+
+a:link,
+a:visited {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover,
+a:active {
+    text-decoration: underline;
+}
+
+footer {
+    font-size: 0.7em;
+}

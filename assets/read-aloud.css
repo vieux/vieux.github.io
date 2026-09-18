@@ -1,0 +1,86 @@
+.read-aloud {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    margin: 20px 0 28px;
+    font-size: 0.85rem;
+}
+
+.read-aloud[hidden],
+.read-aloud [hidden] {
+    display: none;
+}
+
+.read-aloud button,
+.read-aloud select {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 8px 12px;
+    border: 1px solid var(--muted-color);
+    border-radius: 5px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font: inherit;
+    cursor: pointer;
+}
+
+.read-aloud button:hover {
+    border-color: var(--text-color);
+}
+
+.read-aloud button:focus-visible {
+    outline: 2px solid var(--link-color);
+    outline-offset: 3px;
+}
+
+.read-aloud select:focus-visible,
+.read-aloud summary:focus-visible {
+    outline: 2px solid var(--link-color);
+    outline-offset: 3px;
+}
+
+.read-aloud-settings[open] {
+    flex-basis: 100%;
+}
+
+.read-aloud-settings summary {
+    color: var(--muted-color);
+    line-height: 44px;
+    cursor: pointer;
+}
+
+.read-aloud-options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 12px;
+    padding-top: 8px;
+}
+
+.read-aloud-options label {
+    display: flex;
+    flex: 1 1 260px;
+    min-width: 0;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.read-aloud select {
+    width: 100%;
+    min-width: 0;
+}
+
+.read-aloud-options p {
+    flex-basis: 100%;
+    margin: 0;
+    color: var(--muted-color);
+}
+
+.read-aloud-status {
+    color: var(--muted-color);
+    line-height: 1.5;
+}

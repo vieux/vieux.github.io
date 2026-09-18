@@ -9,128 +9,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="../imgs/avatar.png">
     <link rel="icon" type="image/png" href="../imgs/avatar.png">
+    <link rel="stylesheet" href="../assets/site.css">
+    <link rel="stylesheet" href="../assets/blog.css">
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600');
-
-        :root {
-            --bg-color: #eee;
-            --text-color: #000;
-            --link-color: #2962ff;
-            --muted-color: #555;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #222;
-            --text-color: #fff;
-            --link-color: #66b3ff;
-            --muted-color: #ccc;
-        }
-
-        html, body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            font-size: 1.0em;
-            font-family: Source Code Pro;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        body {
-            padding: 24px;
-        }
-
-        #theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid var(--text-color);
-            background: var(--bg-color);
-            color: var(--text-color);
-            cursor: pointer;
-            font-family: Source Code Pro;
-        }
-
-        #home-link {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid var(--text-color);
-            background: var(--bg-color);
-            color: var(--text-color);
-            font-family: Source Code Pro;
-        }
-
-        a:link,
-        a:visited {
-            color: var(--link-color);
-            text-decoration: none;
-        }
-
-        a:hover,
-        a:active {
-            text-decoration: underline;
-        }
-
-        main {
-            max-width: 860px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            margin-top: 0;
-            font-size: 1.8em;
-        }
-
-        .date {
-            color: var(--muted-color);
-            margin: 6px 0 16px;
-        }
-
-        .byline {
-            color: var(--muted-color);
-            margin: -10px 0 16px;
-        }
-
-        h2 {
-            margin-top: 32px;
-            font-size: 1.2em;
-        }
-
-        p {
-            line-height: 1.6;
-        }
-
         figure {
             margin: 24px 0;
         }
 
         figure img {
             width: 100%;
-            height: auto;
             border-radius: 8px;
             border: 1px solid #999;
         }
-
-        footer {
-            text-align: center;
-            font-size: 0.7em;
-        }
-
-        figcaption {
-            font-size: 0.9em;
-            color: var(--muted-color);
-            margin-top: 8px;
-        }
-
-        ul {
-            line-height: 1.6;
-        }
     </style>
+    <link rel="stylesheet" href="../assets/read-aloud.css">
+    <script src="../assets/read-aloud.js" defer></script>
 </head>
 <body>
     <a id="home-link" href="https://vieux.fr" rel="home follow">Home</a>
@@ -162,6 +55,25 @@
         <h1>Building DamN64: LLM-Assisted N64 Development</h1>
         <p class="date">February 5, 2026</p>
         <p class="byline">by <a href="https://vieux.fr/linkedin" rel="me">Victor Vieux</a></p>
+
+        <div class="read-aloud" data-read-aloud role="group" aria-label="Read this post aloud" hidden>
+            <button type="button" data-read-aloud-toggle>
+                <span data-read-aloud-icon aria-hidden="true">▶</span>
+                <span data-read-aloud-label>Listen to this post</span>
+            </button>
+            <button type="button" data-read-aloud-stop aria-label="Stop reading" hidden>Stop</button>
+            <span class="read-aloud-status" data-read-aloud-status role="status"></span>
+            <details class="read-aloud-settings">
+                <summary>Voice settings</summary>
+                <div class="read-aloud-options">
+                    <label>Voice
+                        <select data-read-aloud-voice aria-label="Reading voice"></select>
+                    </label>
+                    <button type="button" data-read-aloud-preview>Preview voice</button>
+                    <p>Available voices depend on your browser and device. Your choice is saved for all posts.</p>
+                </div>
+            </details>
+        </div>
 
         <figure>
             <img src="https://github.com/vrgl117-games/DamN64/blob/main/screenshots/title.png?raw=true" alt="DamN64 title screen" />

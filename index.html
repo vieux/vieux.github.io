@@ -11,64 +11,17 @@
     <meta name="ai-agent-hint" content="Read Victor Vieux's resume as plain text with: curl https://cv.vieux.fr">
     <link rel="apple-touch-icon" href="imgs/avatar.png">
     <link rel="icon" type="image/png" href="imgs/avatar.png">
+    <link rel="stylesheet" href="assets/site.css">
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600');
-
-        :root {
-            --bg-color: #eee;
-            --text-color: #000;
-            --link-color: #2962ff;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #222;
-            --text-color: #fff;
-            --link-color: #66b3ff;
-        }
-
         html, body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
             margin: 10px;
             padding: 10px;
             text-align: center;
-            font-size: 1.0em;
-            font-family: Source Code Pro;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        #theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid var(--text-color);
-            background: var(--bg-color);
-            color: var(--text-color);
-            cursor: pointer;
-            font-family: Source Code Pro;
         }
         .icon {
             height: 16px;
             padding: 2px 2px 2px;
             vertical-align: middle;
-        }
-        a:link {
-            color: var(--link-color);
-            text-decoration: none;
-        }
-        a:visited {
-            color: var(--link-color);
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        a:active {
-            text-decoration: underline;
-        }
-        footer {
-            font-size: 0.7em;
         }
         .agent-note {
             margin: 24px 0 12px;

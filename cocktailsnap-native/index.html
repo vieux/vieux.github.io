@@ -9,105 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="../imgs/avatar.png">
     <link rel="icon" type="image/png" href="../imgs/avatar.png">
+    <link rel="stylesheet" href="../assets/site.css">
+    <link rel="stylesheet" href="../assets/blog.css">
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600');
-
-        :root {
-            --bg-color: #eee;
-            --text-color: #000;
-            --link-color: #2962ff;
-            --muted-color: #555;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #222;
-            --text-color: #fff;
-            --link-color: #66b3ff;
-            --muted-color: #ccc;
-        }
-
-        html, body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            font-size: 1.0em;
-            font-family: Source Code Pro;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        body {
-            padding: 24px;
-        }
-
-        #theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid var(--text-color);
-            background: var(--bg-color);
-            color: var(--text-color);
-            cursor: pointer;
-            font-family: Source Code Pro;
-        }
-
-        #home-link {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid var(--text-color);
-            background: var(--bg-color);
-            color: var(--text-color);
-            font-family: Source Code Pro;
-        }
-
-        a:link,
-        a:visited {
-            color: var(--link-color);
-            text-decoration: none;
-        }
-
-        a:hover,
-        a:active {
-            text-decoration: underline;
-        }
-
-        main {
-            max-width: 860px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            margin-top: 0;
-            font-size: 1.8em;
-        }
-
-        .date {
-            color: var(--muted-color);
-            margin: 6px 0 16px;
-        }
-
-        .byline {
-            color: var(--muted-color);
-            margin: -10px 0 16px;
-        }
-
-        h2 {
-            margin-top: 32px;
-            font-size: 1.2em;
-        }
-
-        p,
         li {
             line-height: 1.6;
         }
 
         pre {
-            overflow-x: auto;
             padding: 16px;
             border: 1px solid #999;
             border-radius: 8px;
@@ -122,26 +31,15 @@
             display: block;
             width: auto;
             max-width: 100%;
-            height: auto;
             margin: 0 auto;
         }
 
         figcaption {
-            font-size: 0.9em;
-            color: var(--muted-color);
-            margin-top: 8px;
             text-align: center;
         }
 
         .comparison {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
             align-items: center;
-            gap: clamp(16px, 4vw, 36px);
-        }
-
-        .comparison-item {
-            min-width: 0;
         }
 
         .comparison--screens img {
@@ -181,31 +79,9 @@
             height: 36px;
         }
 
-        footer {
-            text-align: center;
-            font-size: 0.7em;
-        }
-
-        @media (max-width: 640px) {
-            body {
-                padding: 20px;
-            }
-
-            #home-link,
-            #theme-toggle {
-                position: absolute;
-            }
-
-            main {
-                padding-top: 56px;
-            }
-
-            .comparison {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-        }
     </style>
+    <link rel="stylesheet" href="../assets/read-aloud.css">
+    <script src="../assets/read-aloud.js" defer></script>
 </head>
 <body>
     <a id="home-link" href="https://vieux.fr" rel="home follow">Home</a>
@@ -237,6 +113,25 @@
         <h1>Rewriting My Expo App in Native Kotlin</h1>
         <p class="date">September 17, 2026</p>
         <p class="byline">by <a href="https://vieux.fr/linkedin" rel="me">Victor Vieux</a></p>
+
+        <div class="read-aloud" data-read-aloud role="group" aria-label="Read this post aloud" hidden>
+            <button type="button" data-read-aloud-toggle>
+                <span data-read-aloud-icon aria-hidden="true">▶</span>
+                <span data-read-aloud-label>Listen to this post</span>
+            </button>
+            <button type="button" data-read-aloud-stop aria-label="Stop reading" hidden>Stop</button>
+            <span class="read-aloud-status" data-read-aloud-status role="status"></span>
+            <details class="read-aloud-settings">
+                <summary>Voice settings</summary>
+                <div class="read-aloud-options">
+                    <label>Voice
+                        <select data-read-aloud-voice aria-label="Reading voice"></select>
+                    </label>
+                    <button type="button" data-read-aloud-preview>Preview voice</button>
+                    <p>Available voices depend on your browser and device. Your choice is saved for all posts.</p>
+                </div>
+            </details>
+        </div>
 
         <p>It took Codex about 45 minutes to get <a href="https://cocktailsnap.fixtureslabs.com/" target="_blank" rel="noopener">my Expo app</a> running in native Kotlin. From the initial prompt to a release submitted to Google Play, the whole process took no more than four hours.</p>
 
