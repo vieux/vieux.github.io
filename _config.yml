@@ -1,3 +1,4 @@
 exclude:
+  - AGENTS.md
   - _cloudflare
   - _tools
