@@ -1,0 +1,11 @@
+{
+  "name": "vieux-fr-social-cards",
+  "private": true,
+  "packageManager": "pnpm@11.19.0",
+  "scripts": {
+    "generate": "node generate.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

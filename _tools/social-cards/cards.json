@@ -1,0 +1,23 @@
+[
+  {
+    "slug": "cocktailsnap-native",
+    "title": "Rewriting My Expo App in Native Kotlin",
+    "subtitle": "From the initial prompt to a Google Play submission in four hours.",
+    "layout": "phone",
+    "images": ["cocktailsnap-native/recipes_native.png"]
+  },
+  {
+    "slug": "qt2007",
+    "title": "Restoring My 2007 Qt Apps With Codex",
+    "subtitle": "Two undocumented applications, running again on an Apple Silicon Mac.",
+    "layout": "windows",
+    "images": ["qt2007/hbx2026.png", "qt2007/ftp2026.png"]
+  },
+  {
+    "slug": "damn64",
+    "title": "Building DamN64: LLM‑Assisted N64 Development",
+    "subtitle": "An isometric two-player game built for original Nintendo 64 hardware.",
+    "layout": "game",
+    "images": ["../vrgl117-games/DamN64/screenshots/title.png"]
+  }
+]
