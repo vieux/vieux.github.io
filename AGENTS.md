@@ -9,6 +9,7 @@ This repository is the source for `https://vieux.fr`. It is a small static site 
 3. Replace all post-specific content and metadata. The visible `<h1>`, `<title>`, `og:title`, and `twitter:title` must agree. The visible date and `article:published_time` must represent the same day.
 4. Add the post near the top of the `Posts` list in the root `index.html`.
 5. Store post-specific images in the post directory. Give every meaningful image useful `alt` text and use a `<figcaption>` when context or attribution helps.
+6. Add the canonical post URL to `sitemap.xml`. Keep the `BlogPosting` JSON-LD in the post head synchronized with its title, description, canonical URL, image, author, and publication date. Use the homepage as the author URL. Only add `dateModified` or sitemap `lastmod` when an accurate date is available; do not invent dates or refresh them for every deployment.
 
 Every post head must include:
 
