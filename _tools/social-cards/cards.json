@@ -1,5 +1,14 @@
 [
   {
+    "slug": "wake-word-echo-dot",
+    "title": "Local Voice Routines with an Old Amazon Echo Dot and Home Assistant",
+    "subtitle": "Old Echo Dots, custom wake words, and Home Assistant.",
+    "layout": "single",
+    "images": [
+      "wake-word-echo-dot/phrase-preview.jpeg"
+    ]
+  },
+  {
     "slug": "cocktailsnap-native",
     "title": "Rewriting My Expo App in Native Kotlin",
     "subtitle": "From the initial prompt to a Google Play submission in four hours.",
