@@ -21,7 +21,23 @@ Every post head must include:
 
 Use `assets/blog.css` for rules shared by posts. Keep inline CSS limited to layout that is genuinely specific to one article. When two posts need the same rule, move it into the shared stylesheet.
 
-Keep the existing read-aloud control markup directly below the byline. `assets/read-aloud.js` reads headings, paragraphs, list items, and preformatted text from `<main>` while skipping figures, dates, bylines, controls, hidden content, and elements marked with `data-read-aloud-ignore`.
+Keep the recorded read-aloud control markup directly below the byline. Generate narration
+with Pocket TTS in Docker using `_tools/pocket-tts/generate.py`; see
+`_tools/pocket-tts/README.md` for setup and the full workflow. From the repository root:
+
+```sh
+docker compose -f _tools/pocket-tts/compose.yaml up -d --build
+# Wait for http://127.0.0.1:8765/health to report healthy.
+python3 _tools/pocket-tts/generate.py <slug>
+```
+
+The generator reads headings, paragraphs, list items, and preformatted text from
+`<main>`, skipping figures, dates, bylines, controls, hidden content, and elements
+marked with `data-read-aloud-ignore`. It writes `<slug>/narration.m4a` and updates
+the player duration. Regenerate after changing spoken article text, preview the
+audio, and commit the HTML and audio together. Keep intermediate WAV/text files
+in the ignored `_tools/pocket-tts/output/` directory. Playback must work without
+JavaScript; the shared script adds playback speed controls.
 
 For external links that open a new tab, use `target="_blank" rel="noopener"`. Check the article at desktop and mobile widths, in both light and dark themes.
 

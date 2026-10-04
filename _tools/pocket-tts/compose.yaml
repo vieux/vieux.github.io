@@ -1,0 +1,11 @@
+name: vieux-pocket-tts
+services:
+  tts:
+    build: .
+    ports:
+      - "127.0.0.1:8765:8000"
+    volumes:
+      - model-cache:/cache/huggingface
+      - ./output:/output
+volumes:
+  model-cache:

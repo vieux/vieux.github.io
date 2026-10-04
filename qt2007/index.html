@@ -124,23 +124,21 @@
         <p class="date">July 31, 2026</p>
         <p class="byline">by <a href="https://vieux.fr/linkedin" rel="me">Victor Vieux</a></p>
 
-        <div class="read-aloud" data-read-aloud role="group" aria-label="Read this post aloud" hidden>
-            <button type="button" data-read-aloud-toggle>
-                <span data-read-aloud-icon aria-hidden="true">▶</span>
-                <span data-read-aloud-label>Listen to this post</span>
-            </button>
-            <button type="button" data-read-aloud-stop aria-label="Stop reading" hidden>Stop</button>
-            <span class="read-aloud-status" data-read-aloud-status role="status"></span>
-            <details class="read-aloud-settings">
-                <summary>Voice settings</summary>
-                <div class="read-aloud-options">
-                    <label>Voice
-                        <select data-read-aloud-voice aria-label="Reading voice"></select>
-                    </label>
-                    <button type="button" data-read-aloud-preview>Preview voice</button>
-                    <p>Available voices depend on your browser and device. Your choice is saved for all posts.</p>
-                </div>
-            </details>
+        <div class="read-aloud read-aloud-recorded" data-read-aloud role="group" aria-label="Listen to this post">
+            <span id="narration-label">Listen to this post <span class="read-aloud-status">— 6:38 · AI narration</span></span>
+            <audio controls preload="none" data-read-aloud-audio aria-labelledby="narration-label">
+                <source src="narration.m4a" type="audio/mp4">
+                <a href="narration.m4a">Download the audio</a>
+            </audio>
+            <label data-read-aloud-speed-control hidden>Speed
+                <select data-read-aloud-speed aria-label="Narration playback speed">
+                    <option value="0.75">0.75×</option>
+                    <option value="1" selected>1×</option>
+                    <option value="1.25">1.25×</option>
+                    <option value="1.5">1.5×</option>
+                    <option value="2">2×</option>
+                </select>
+            </label>
         </div>
 
         <p>I recently connected an old 2.5-inch notebook hard drive that had been sitting in storage. Among its contents were two C++ projects I wrote in 2007: <code>HbxImg</code> and <code>FreeTvPlayer</code>.</p>
