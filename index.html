@@ -13,10 +13,60 @@
     <link rel="icon" type="image/png" href="imgs/avatar.png">
     <link rel="stylesheet" href="assets/site.css">
     <style>
-        html, body {
-            margin: 10px;
-            padding: 10px;
+        html {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 40px 24px 28px;
             text-align: center;
+            line-height: 1.5;
+        }
+        header h2 {
+            margin: 18px 0 12px;
+        }
+        header h3 {
+            margin: 0;
+            font-size: 1em;
+            font-weight: 400;
+            color: var(--muted-color);
+        }
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px 14px;
+            margin-top: 16px;
+        }
+        .contact-links span {
+            color: var(--muted-color);
+        }
+        main h4 {
+            margin: 40px 0 20px;
+        }
+        main dl {
+            margin: 0;
+        }
+        main dd {
+            margin-left: 0;
+        }
+        .bio dt, .bio dd + dd, .projects dd {
+            color: var(--muted-color);
+            font-size: 0.9em;
+        }
+        .bio dt {
+            margin-bottom: 3px;
+        }
+        .posts dt + dt {
+            margin-top: 10px;
+        }
+        @media (max-width: 480px) {
+            body {
+                padding: 32px 20px 24px;
+            }
         }
         .icon {
             height: 16px;
@@ -24,7 +74,7 @@
             vertical-align: middle;
         }
         .agent-note {
-            margin: 24px 0 12px;
+            margin: 40px 0 16px;
             font-size: 0.8em;
         }
         .agent-note code {
@@ -35,9 +85,10 @@
             padding-right: 2px;
         }
         .avatar {
-            height: 256px;
+            height: 200px;
+            width: 200px;
             border-radius: 14%;
-            border: 1px solid var(--background-color);
+            border: 1px solid var(--bg-color);
         }
     </style>
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="oFqu1sliU6gndcG+zKxXkw" async></script>
@@ -70,11 +121,18 @@
         <img class="avatar" src="imgs/avatar.png" alt="Victor Vieux" />
         <h2>Victor Vieux</h2>
         <h3>French Software Engineer living in San Francisco</h3>
+        <nav class="contact-links" aria-label="Contact">
+            <a href="https://vieux.fr/github" rel="me noopener" target="_blank"><img class="icon" src="imgs/github.png" alt="" />GitHub</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://vieux.fr/linkedin" rel="me noopener" target="_blank"><img class="icon" src="imgs/linkedin.png" alt="" />LinkedIn</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://cv.vieux.fr">CV</a>
+        </nav>
     </header>
 
     <main>
         <h4>Bio</h4>
-        <dl>
+        <dl class="bio">
             <dt><img id="replit" src="imgs/replit.png" alt="Replit logo" />2025-Present</dt>
             <dd>Member of Technical Staff at <a href="https://replit.com" target="_blank">Replit</a></dd>
             <dd>Build apps and sites with AI Agent</dd>
@@ -99,24 +157,8 @@
             <dd>Mobile (Android + backend) development at startups in Paris</dd>
         </dl>
 
-        <h4>Contact</h4>
-        <dl>
-            <dt><a href="https://vieux.fr/github" rel="me" target="_blank"><img class="icon"
-                        src="imgs/github.png" />vieux.fr/github</a></dt>
-
-            <!--  <dt><a href="https://vieux.fr/keybase" rel="me" target="_blank"><img class="icon"
-                        src="imgs/keybase.png" />vieux.fr/keybase</a></dt> -->
-
-            <!-- <dt><a href="https://twitter.com/vieux" rel="me" target="_blank"><img class="icon" src="imgs/twitter.png"/>twitter.com/vieux</a></dt> -->
-
-            <dt><a href="https://vieux.fr/linkedin" rel="me" target="_blank"><img class="icon"
-                        src="imgs/linkedin.png">vieux.fr/linkedin</a></dt>
-
-            <!-- <dt><a href="https://speakerdeck.com/vieux" rel="me" target="_blank"><img class="icon" src="imgs/speakerdeck.png">speakerdeck.com/vieux</a></dt> -->
-        </dl>
-
         <h4>Posts</h4>
-        <dl>
+        <dl class="posts">
             <dt><a href="/wake-word-echo-dot/" rel="follow">Local Voice Routines with an Old Amazon Echo Dot and Home Assistant</a></dt>
             <dt><a href="/cocktailsnap-native" rel="follow">Rewriting My Expo App in Native Kotlin</a></dt>
             <dt><a href="/qt2007" rel="follow">Restoring My 2007 Qt Apps With Codex</a></dt>
@@ -136,7 +178,7 @@
         </dl> -->
 
         <h4>Side Projects</h4>
-        <dl>
+        <dl class="projects">
             <dt><a href="https://vrgl117.games" target="_blank">vrgl117.games</a></dt>
             <dd>Video Games for Retro Consoles.</dd>
             <br>
