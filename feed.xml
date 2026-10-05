@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Victor Vieux</title>
+    <link>https://vieux.fr/</link>
+    <description>Posts by Victor Vieux about software engineering, AI-assisted development, and personal projects.</description>
+    <language>en</language>
+    <atom:link href="https://vieux.fr/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Local Voice Routines with an Old Amazon Echo Dot and Home Assistant</title>
+      <link>https://vieux.fr/wake-word-echo-dot/</link>
+      <description>I repurposed old Echo Dots with EchoLocal and custom wake word models to trigger Home Assistant routines without a voice assistant pipeline.</description>
+      <pubDate>Sun, 04 Oct 2026 00:00:00 -0700</pubDate>
+      <guid isPermaLink="true">https://vieux.fr/wake-word-echo-dot/</guid>
+    </item>
+    <item>
+      <title>Rewriting My Expo App in Native Kotlin</title>
+      <link>https://vieux.fr/cocktailsnap-native/</link>
+      <description>I rewrote CocktailSnap from Expo and React Native to native Kotlin, then submitted it to Google Play—all in four hours.</description>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 -0700</pubDate>
+      <guid isPermaLink="true">https://vieux.fr/cocktailsnap-native/</guid>
+    </item>
+    <item>
+      <title>Restoring My 2007 Qt Apps With Codex</title>
+      <link>https://vieux.fr/qt2007/</link>
+      <description>I restored two undocumented Qt applications from 2007 and made them run on an Apple Silicon Mac.</description>
+      <pubDate>Fri, 31 Jul 2026 00:00:00 -0700</pubDate>
+      <guid isPermaLink="true">https://vieux.fr/qt2007/</guid>
+    </item>
+    <item>
+      <title>Building DamN64: LLM-Assisted N64 Development</title>
+      <link>https://vieux.fr/damn64/</link>
+      <description>How I built an isometric, two-player Nintendo 64 game with LLM-assisted development.</description>
+      <pubDate>Thu, 05 Feb 2026 00:00:00 -0800</pubDate>
+      <guid isPermaLink="true">https://vieux.fr/damn64/</guid>
+    </item>
+  </channel>
+</rss>

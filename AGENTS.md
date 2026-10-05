@@ -10,11 +10,13 @@ This repository is the source for `https://vieux.fr`. It is a small static site 
 4. Add the post near the top of the `Posts` list in the root `index.html`.
 5. Store post-specific images in the post directory. Give every meaningful image useful `alt` text and use a `<figcaption>` when context or attribution helps.
 6. Add the canonical post URL to `sitemap.xml`. Keep the `BlogPosting` JSON-LD in the post head synchronized with its title, description, canonical URL, image, author, and publication date. Use the homepage as the author URL. Only add `dateModified` or sitemap `lastmod` when an accurate date is available; do not invent dates or refresh them for every deployment.
+7. Add the post to `feed.xml`, newest first. Use its exact title, search description, canonical HTTPS URL (with trailing slash) for both `link` and permalink `guid`, and its publication date in RFC 2822 format with timezone for `pubDate`. Keep feed titles and descriptions synchronized when editing posts; preserve publication dates and GUIDs.
 
 Every post head must include:
 
 - A useful search description, author, and viewport.
 - A canonical URL in the form `https://vieux.fr/<slug>/`.
+- RSS discovery: `<link rel="alternate" type="application/rss+xml" title="Victor Vieux — RSS" href="https://vieux.fr/feed.xml">`.
 - Open Graph type, site name, URL, title, description, image, image dimensions, image alt text, and publication time.
 - Twitter large-image card, title, description, image, and image alt text.
 - An absolute social image URL in the form `https://vieux.fr/<slug>/social-card.png`.
