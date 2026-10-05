@@ -55,7 +55,12 @@
         .lab-screenshot { margin: 28px 0 36px; }
         .lab-screenshot img { display: block; width: 67%; margin: 0 auto; border-radius: 12px; }
         .lab-screenshot figcaption { text-align: center; }
-        .echo-dots img { width: 34%; margin: 0 auto; }
+        .echo-dots { display: flex; align-items: center; justify-content: center; gap: clamp(16px, 4vw, 32px); }
+        .echo-dots img { width: 34%; aspect-ratio: 5 / 6; object-fit: contain; margin: 0; }
+        .echo-dots .home-assistant-logo { aspect-ratio: 3 / 2; border-radius: 12px; }
+        .echo-dots .echo-dot-dark { display: none; }
+        [data-theme="dark"] .echo-dots .echo-dot-light { display: none; }
+        [data-theme="dark"] .echo-dots .echo-dot-dark { display: block; }
         .screenshot-link { display: block; cursor: zoom-in; }
         .screenshot-link:focus-visible { outline: 2px solid var(--link-color); outline-offset: 4px; }
         .image-viewer { padding: 0; border: 1px solid var(--muted-color); border-radius: 12px; background: var(--bg-color); color: var(--text-color); max-width: 94vw; max-height: 94vh; }
@@ -120,7 +125,9 @@
         <p>I wanted a local alternative to cloud assistants like Google Home and Alexa. Since I had a few second gen Echo Dots lying around and I was already running Home Assistant on a Raspberry Pi, I decided to look into it.</p>
 
         <figure class="lab-screenshot echo-dots">
-            <img src="echo-dots.png" alt="Black second-generation Amazon Echo Dot with a blue light ring." width="500" height="600" decoding="async">
+            <img class="echo-dot-light" src="echo-dots.webp" alt="Black second-generation Amazon Echo Dot with a blue light ring." width="500" height="600" decoding="async">
+            <img class="echo-dot-dark" src="echo-dots-dark.webp" alt="White second-generation Amazon Echo Dot with a blue light ring." width="500" height="600" decoding="async">
+            <img class="home-assistant-logo" src="home-assistant-logo.webp" alt="Home Assistant logo." width="600" height="400" decoding="async">
         </figure>
 
         <h2>Flashing the Echo Dot</h2>
@@ -128,6 +135,13 @@
         <p>I found <a href="https://github.com/ygelfand/echolocal" target="_blank" rel="noopener">EchoLocal</a>, a project that replaces Amazon’s services on a second-generation Echo Dot. It runs on the Dot and speaks the ESPHome native API, so Home Assistant discovers it as an ESPHome device (the Dot is not ESPHome based, but EchoLocal implements the protocol that lets it fit into the same Home Assistant integration.)</p>
 
         <p>I flashed one of the Dots and connected it to Home Assistant. EchoLocal already supported local wake word detection with <a href="https://github.com/dscripka/openWakeWord" target="_blank" rel="noopener">openWakeWord</a> and <a href="https://github.com/kahrendt/microWakeWord" target="_blank" rel="noopener">microWakeWord</a> models.</p>
+
+        <figure class="lab-screenshot">
+            <a class="screenshot-link" href="echolocal-dashboard.webp" aria-label="Open EchoLocal dashboard screenshot at full size">
+                <img src="echolocal-dashboard.webp" alt="EchoLocal in Home Assistant showing the living-room and office Echo Dots with their controls." width="944" height="826" loading="lazy" decoding="async">
+            </a>
+            <figcaption>The two Echo Dots in Home Assistant’s EchoLocal dashboard.</figcaption>
+        </figure>
 
         <h2>Speech-to-text and text-to-speech</h2>
 
