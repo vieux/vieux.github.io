@@ -1,9 +1,17 @@
-# llms.txt
+# Victor Vieux
 
-Site: vieux.fr
-Description: Personal site and posts by Victor Vieux.
-Contact: https://vieux.fr/
+> Personal site of Victor Vieux, a French software engineer living in San Francisco. Posts cover software engineering, AI-assisted development, and personal projects.
 
-## Pages
-- https://vieux.fr/
-- https://vieux.fr/damn64/
+Blog posts are available as static HTML. The resume has an explicit plain-text version.
+
+## Profile
+
+- [Homepage](https://vieux.fr/): Biography, work history, projects, and social profiles.
+- [Resume](https://cv.vieux.fr/resume.txt): Plain-text professional resume.
+
+## Blog posts
+
+- [Local Voice Routines with an Old Amazon Echo Dot and Home Assistant](https://vieux.fr/wake-word-echo-dot/): Repurposing Echo Dots with EchoLocal and custom wake word models to trigger Home Assistant routines.
+- [Rewriting My Expo App in Native Kotlin](https://vieux.fr/cocktailsnap-native/): Rewriting CocktailSnap from Expo and React Native to native Kotlin and submitting it to Google Play in four hours.
+- [Restoring My 2007 Qt Apps With Codex](https://vieux.fr/qt2007/): Restoring two undocumented Qt applications from 2007 on an Apple Silicon Mac.
+- [Building DamN64: LLM-Assisted N64 Development](https://vieux.fr/damn64/): Building an isometric, two-player Nintendo 64 game with LLM-assisted development.
