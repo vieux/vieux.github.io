@@ -19,7 +19,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="627">
     <meta property="og:image:alt" content="Git branches connecting to shared source control infrastructure">
-    <meta property="article:published_time" content="2026-10-22T00:00:00-07:00">
+    <meta property="article:published_time" content="2026-10-23T00:00:00-07:00">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Git Isn't Dead. Its Servers Are Changing.">
     <meta name="twitter:description" content="How Scion, GitHub, and Cursor separate storage, coordination, and client workflows—and why faster commits do not solve integration.">
@@ -40,7 +40,7 @@
       "image": [
         "https://vieux.fr/git-at-agent-scale/social-card.png"
       ],
-      "datePublished": "2026-10-22T00:00:00-07:00",
+      "datePublished": "2026-10-23T00:00:00-07:00",
       "author": {
         "@type": "Person",
         "name": "Victor Vieux",
@@ -90,11 +90,11 @@
 
     <main>
         <h1>Git Isn&#x27;t Dead. Its Servers Are Changing.</h1>
-        <p class="date">October 22, 2026</p>
+        <p class="date">October 23, 2026</p>
         <p class="byline">by <a href="https://vieux.fr/linkedin" rel="me">Victor Vieux</a></p>
 
         <div class="read-aloud read-aloud-recorded" data-read-aloud role="group" aria-label="Listen to this post">
-            <span id="narration-label">Listen to this post <span class="read-aloud-status">— 9:47 · AI narration</span></span>
+            <span id="narration-label">Listen to this post <span class="read-aloud-status">— 9:51 · AI narration</span></span>
             <audio controls preload="none" data-read-aloud-audio aria-labelledby="narration-label">
                 <source src="narration.m4a" type="audio/mp4">
                 <a href="narration.m4a">Download the audio</a>
@@ -145,7 +145,7 @@
 
         <h2>GitHub changes where writers have to wait</h2>
 
-        <p>GitHub has to preserve compatibility with existing clients. Its <a href="https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure/" target="_blank" rel="noopener">October 21 architecture post</a> describes an incremental bridge from its Spokes storage system.</p>
+        <p>GitHub has to preserve compatibility with existing clients. Its <a href="https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure/" target="_blank" rel="noopener">October 21 architecture post</a> describes an incremental bridge from Spokes, GitHub’s internal repository storage and replication system.</p>
 
         <p>Spokes keeps full repository copies on local disks. In the architecture described, writes hold a repository-wide lock while replicas coordinate. A slow healthy replica delays the next write, even when it touches an unrelated branch.</p>
 
