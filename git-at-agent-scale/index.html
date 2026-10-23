@@ -94,7 +94,7 @@
         <p class="byline">by <a href="https://vieux.fr/linkedin" rel="me">Victor Vieux</a></p>
 
         <div class="read-aloud read-aloud-recorded" data-read-aloud role="group" aria-label="Listen to this post">
-            <span id="narration-label">Listen to this post <span class="read-aloud-status">— 9:49 · AI narration</span></span>
+            <span id="narration-label">Listen to this post <span class="read-aloud-status">— 10:25 · AI narration</span></span>
             <audio controls preload="none" data-read-aloud-audio aria-labelledby="narration-label">
                 <source src="narration.m4a" type="audio/mp4">
                 <a href="narration.m4a">Download the audio</a>
@@ -178,6 +178,10 @@
         <p>That helps at both ends of the workload: add replicas for a busy repository, or remove an idle repository from local disk and reconstruct it later. The durable data remains.</p>
 
         <p>The coordination has moved into conditional updates in object storage. It still exists. That is the recurring design question across these systems: what is the smallest piece of shared state that writers must agree on?</p>
+
+        <p>Shopify CEO Tobi Lütke’s <a href="https://pages.tobi.lutke.com/walgit/" target="_blank" rel="noopener">walgit</a> makes this approach available as an open-source Git server. The project explicitly credits Cursor’s Continuity: a write-ahead log in object storage is authoritative, and a conditional update to a manifest publishes each push. Local repositories are disposable caches.</p>
+
+        <p>Walgit also aims to serve repositories larger than the machine hosting them. It can read parts of remote packfiles on demand and serve clone bundles directly from object storage. That makes the architectural idea tangible: a developer can inspect and run an implementation, then evaluate its tradeoffs against their own workload.</p>
 
         <h2>This did not start with agents</h2>
 
