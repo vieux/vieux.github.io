@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="730" viewBox="0 0 720 730" role="img">
+  <title>Scion: changes first</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0 10 5 0 10Z" fill="#3979a8" />
+    </marker>
+  </defs>
+  <rect width="720" height="730" rx="18" fill="#f3f7fa" />
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+    <text x="32" y="48" text-anchor="start" font-size="27" fill="#18334b">Scion: changes first</text>
+    <text x="32" y="83" text-anchor="start" font-size="18" fill="#526b80">Logical model; cache tiers and placement omitted</text>
+    <rect x="190" y="118" width="340" height="76" rx="12" fill="#fff" stroke="#9eb4c6" stroke-width="2" />
+    <text x="360.0" y="163.0" text-anchor="middle" font-size="20" fill="#18334b">Agents / CI / developers</text>
+    <path d="M360 194V236" fill="none" stroke="#3979a8" stroke-width="3" marker-end="url(#arrow)" />
+    <text x="378" y="223" text-anchor="start" font-size="18" fill="#18334b">API</text>
+    <rect x="140" y="240" width="440" height="80" rx="12" fill="#e0edf9" stroke="#3979a8" stroke-width="2" />
+    <text x="360.0" y="272.0" text-anchor="middle" font-size="22" fill="#18334b">Scion APIs</text>
+    <text x="360.0" y="302.0" text-anchor="middle" font-size="22" fill="#18334b">Create changesets</text>
+    <path d="M360 320V368" fill="none" stroke="#3979a8" stroke-width="3" marker-end="url(#arrow)" />
+    <rect x="140" y="372" width="440" height="112" rx="12" fill="#fff" stroke="#9eb4c6" stroke-width="2" />
+    <text x="360.0" y="405.0" text-anchor="middle" font-size="22" fill="#18334b">Changeset</text>
+    <text x="360.0" y="435.0" text-anchor="middle" font-size="22" fill="#18334b">Parents + changed paths</text>
+    <text x="360.0" y="465.0" text-anchor="middle" font-size="22" fill="#18334b">+ content-addressed pointers</text>
+    <path d="M185 484V584" fill="none" stroke="#3979a8" stroke-width="3" marker-end="url(#arrow)" />
+    <path d="M535 484V584" fill="none" stroke="#3979a8" stroke-width="3" stroke-dasharray="5 5" marker-end="url(#arrow)" />
+    <rect x="35" y="590" width="300" height="102" rx="12" fill="#fff" stroke="#9eb4c6" stroke-width="2" />
+    <text x="185.0" y="622" text-anchor="middle" font-size="22" fill="#18334b">Blob storage</text>
+    <text x="185.0" y="652" text-anchor="middle" font-size="22" fill="#18334b">File contents</text>
+    <rect x="385" y="590" width="300" height="102" rx="12" fill="#fff" stroke="#9eb4c6" stroke-width="2" />
+    <text x="535.0" y="622" text-anchor="middle" font-size="22" fill="#18334b">Derived indexes</text>
+    <text x="535.0" y="652" text-anchor="middle" font-size="20" fill="#18334b">Blame / history</text>
+    <text x="515" y="527" text-anchor="end" font-size="16" fill="#18334b">derived from</text>
+    <text x="535.0" y="678" text-anchor="middle" font-size="20" fill="#18334b">Commit graph</text>
+    <text x="515" y="551" text-anchor="end" font-size="16" fill="#18334b">changesets</text>
+  </g>
+</svg>

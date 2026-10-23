@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="705" viewBox="0 0 720 705" role="img">
+  <title>Cursor: the log is the source of truth</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0 10 5 0 10Z" fill="#3979a8" />
+    </marker>
+  </defs>
+  <rect width="720" height="705" rx="18" fill="#f3f7fa" />
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+    <text x="32" y="48" text-anchor="start" font-size="27" fill="#18334b">Cursor: the log is the source of truth</text>
+    <text x="32" y="83" text-anchor="start" font-size="18" fill="#526b80">Continuity, the storage layer behind Origin</text>
+    <rect x="180" y="118" width="360" height="70" rx="12" fill="#fff" stroke="#9eb4c6" stroke-width="2" />
+    <text x="360.0" y="160.0" text-anchor="middle" font-size="22" fill="#18334b">Git client</text>
+    <path d="M360 188V231" fill="none" stroke="#3979a8" stroke-width="3" marker-end="url(#arrow)" />
+    <text x="385" y="217" text-anchor="start" font-size="18" fill="#18334b">push</text>
+    <rect x="180" y="236" width="360" height="80" rx="12" fill="#fff" stroke="#9eb4c6" stroke-width="2" />
+    <text x="360.0" y="268.0" text-anchor="middle" font-size="22" fill="#18334b">Serving node</text>
+    <text x="360.0" y="298.0" text-anchor="middle" font-size="22" fill="#18334b">Git repository on NVMe</text>
+    <path d="M360 316V374" fill="none" stroke="#3979a8" stroke-width="3" marker-end="url(#arrow)" />
+    <text x="380" y="340" text-anchor="start" font-size="17" fill="#18334b">upload entry</text>
+    <rect x="110" y="379" width="500" height="84" rx="12" fill="#dfefe9" stroke="#508578" stroke-width="2" />
+    <text x="360.0" y="413.0" text-anchor="middle" font-size="22" fill="#18334b">S3 write-ahead log</text>
+    <text x="360.0" y="443.0" text-anchor="middle" font-size="20" fill="#18334b">Durable entries + publication index</text>
+    <path d="M230 463V516H185V550" fill="none" stroke="#3979a8" stroke-width="3" marker-end="url(#arrow)" />
+    <path d="M490 463V516H535V550" fill="none" stroke="#3979a8" stroke-width="3" marker-end="url(#arrow)" />
+    <text x="360" y="501" text-anchor="middle" font-size="19" fill="#18334b">replay / catch up</text>
+    <rect x="35" y="554" width="300" height="76" rx="12" fill="#fff" stroke="#9eb4c6" stroke-width="2" />
+    <text x="185.0" y="584.0" text-anchor="middle" font-size="22" fill="#18334b">Read replica</text>
+    <text x="185.0" y="614.0" text-anchor="middle" font-size="22" fill="#18334b">Local Git repository</text>
+    <rect x="385" y="554" width="300" height="76" rx="12" fill="#fff" stroke="#9eb4c6" stroke-width="2" />
+    <text x="535.0" y="584.0" text-anchor="middle" font-size="22" fill="#18334b">Read replica</text>
+    <text x="535.0" y="614.0" text-anchor="middle" font-size="22" fill="#18334b">Local Git repository</text>
+    <text x="360" y="672" text-anchor="middle" font-size="18" fill="#526b80">Reads verify freshness against S3 before serving.</text>
+    <text x="380" y="365" text-anchor="start" font-size="17" fill="#18334b">publish index</text>
+  </g>
+</svg>

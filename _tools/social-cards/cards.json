@@ -1,5 +1,14 @@
 [
   {
+    "slug": "git-at-agent-scale",
+    "title": "Git Isn't Dead. Its Servers Are Changing.",
+    "subtitle": "The same Git commands. Very different infrastructure.",
+    "layout": "single",
+    "images": [
+      "git-at-agent-scale/branches.svg"
+    ]
+  },
+  {
     "slug": "wake-word-echo-dot",
     "title": "Local Voice Routines with an Old Amazon Echo Dot and Home Assistant",
     "subtitle": "Old Echo Dots, custom wake words, and Home Assistant.",

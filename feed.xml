@@ -7,6 +7,13 @@
     <language>en</language>
     <atom:link href="https://vieux.fr/feed.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Git Isn&#x27;t Dead. Its Servers Are Changing.</title>
+      <link>https://vieux.fr/git-at-agent-scale/</link>
+      <description>How Scion, GitHub, and Cursor separate storage, coordination, and client workflows—and why faster commits do not solve integration.</description>
+      <pubDate>Thu, 22 Oct 2026 00:00:00 -0700</pubDate>
+      <guid isPermaLink="true">https://vieux.fr/git-at-agent-scale/</guid>
+    </item>
+    <item>
       <title>Local Voice Routines with an Old Amazon Echo Dot and Home Assistant</title>
       <link>https://vieux.fr/wake-word-echo-dot/</link>
       <description>I repurposed old Echo Dots with EchoLocal and custom wake word models to trigger Home Assistant routines without a voice assistant pipeline.</description>
