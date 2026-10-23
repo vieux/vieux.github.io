@@ -97,3 +97,17 @@ again. Use ordinary phonetic text, not SSML. The generator saves original text i
 `output/<slug>.txt` and the actual TTS input in `output/<slug>.spoken.txt` so both
 can be reviewed. Preview short samples when tuning spellings, then rerun the
 normal generation command to update the audio and player duration together.
+
+Technical names may be skipped even when they are present in the extracted text.
+Spell out acronyms and split compact names in the overrides (for example, `Qt`
+→ `cue tee`, `C++` → `C plus plus`, and `FreeTvPlayer` → `Free tee vee Player`).
+Keep version-specific overrides consistent: replacements do not cascade, so
+`Qt 5` must explicitly include `cue tee` too. Expand contractions when the voice
+drops their negation, such as `wasn’t` → `was not`.
+
+For a full narration audit, compare the extracted text with the visible article,
+then transcribe the generated audio locally and compare that transcript with
+the spoken input. Review differences in context: transcription may normalize
+`C plus plus` to `C++`, numbers to digits, and letter names to acronyms. A matching
+input or a plausible total duration alone does not establish that every word
+was spoken. Transcription is an additional check, not a guarantee of pronunciation.
