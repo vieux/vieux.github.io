@@ -81,3 +81,19 @@ All model inference and Python ML dependencies remain inside Docker.
 
 The Docker image pins Pocket TTS 3.3.0 and CPU PyTorch 2.8.0. Model downloads are
 cached in the named volume. The web server retains the model between requests.
+
+## Pronunciation overrides
+
+Edit `pronunciations.json` to change speech without changing the article. `defaults`
+applies to every post; `posts.<slug>` adds or overrides replacements for one post.
+For example, `S3` becomes `ess three`, while post-specific numbers and dates use
+explicit spoken forms such as `25` → `twenty-five` and `October 21` →
+`October twenty-first`. Numbers are deliberately scoped to the post: a year,
+version number, identifier, and quantity can need different readings.
+
+Matches are case-sensitive literal words or phrases, with longer matches first.
+Substrings inside words are not replaced, and replacement text is not processed
+again. Use ordinary phonetic text, not SSML. The generator saves original text in
+`output/<slug>.txt` and the actual TTS input in `output/<slug>.spoken.txt` so both
+can be reviewed. Preview short samples when tuning spellings, then rerun the
+normal generation command to update the audio and player duration together.

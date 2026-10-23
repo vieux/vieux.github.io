@@ -1,0 +1,49 @@
+{
+  "defaults": {
+    "S3": "ess three",
+    "Google": "Goo gull"
+  },
+  "posts": {
+    "git-at-agent-scale": {
+      "October 6": "October sixth",
+      "October 13": "October thirteenth",
+      "October 21": "October twenty-first",
+      "7.38": "seven point three eight",
+      "3.35": "three point three five",
+      "690": "six hundred ninety",
+      "30,000": "thirty thousand",
+      "25": "twenty-five",
+      "2026": "twenty twenty-six",
+      "2016": "twenty sixteen"
+    },
+    "wake-word-echo-dot": {
+      "20,000": "twenty thousand",
+      "25,000": "twenty-five thousand"
+    },
+    "cocktailsnap-native": {
+      "45": "forty-five"
+    },
+    "qt2007": {
+      "2007": "two thousand seven",
+      "2.5": "two point five",
+      "4.2.3": "four point two point three",
+      "4.1.2": "four point one point two",
+      "Qt 5": "Qt five",
+      "Qt 4": "Qt four",
+      "32-bit": "thirty-two bit",
+      "X11": "ex eleven",
+      "M3U": "em three you",
+      "Qt 4.2.3": "Qt four point two point three"
+    },
+    "damn64": {
+      "DamN64": "Dam en sixty-four",
+      "N64brew": "en sixty-four brew",
+      "N64": "en sixty-four",
+      "64": "sixty-four",
+      "2D": "two dee",
+      "1st": "first",
+      "5.2": "five point two",
+      "4.5": "four point five"
+    }
+  }
+}

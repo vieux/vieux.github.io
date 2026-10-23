@@ -2,6 +2,7 @@
 """Generate article narration using the local Docker server; Python stdlib only."""
 import argparse
 import io
+import json
 import re
 import subprocess
 import time
@@ -13,6 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = Path(__file__).resolve().parent / 'output'
+PRONUNCIATIONS = Path(__file__).with_name('pronunciations.json')
 VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr'}
 
 
@@ -59,6 +61,21 @@ class Article(HTMLParser):
                 break
 
 
+def spoken_text(text, slug):
+    """Apply literal, whole-token overrides once, leaving article HTML untouched."""
+    config = json.loads(PRONUNCIATIONS.read_text())
+    replacements = {**config.get('defaults', {}), **config.get('posts', {}).get(slug, {})}
+    if not replacements:
+        return text
+    if any(not key or not isinstance(value, str) or not value.strip()
+           for key, value in replacements.items()):
+        raise ValueError('Pronunciation overrides must have nonempty keys and spoken text.')
+    pattern = r'(?<!\w)(?:' + '|'.join(
+        re.escape(key) for key in sorted(replacements, key=len, reverse=True)
+    ) + r')(?!\w)'
+    return re.sub(pattern, lambda match: replacements[match.group()], text)
+
+
 def player(seconds):
     duration = f'{round(seconds) // 60}:{round(seconds) % 60:02d}'
     return f'''        <div class="read-aloud read-aloud-recorded" data-read-aloud role="group" aria-label="Listen to this post">
@@ -94,13 +111,15 @@ def generate(slug, voice, server):
         raise ValueError('Expected one read-aloud control group; copy a current post first.')
     OUTPUT.mkdir(exist_ok=True)
     (OUTPUT / f'{slug}.txt').write_text('\n\n'.join(parser.blocks) + '\n')
+    blocks = [spoken_text(block, slug) for block in parser.blocks]
+    (OUTPUT / f'{slug}.spoken.txt').write_text('\n\n'.join(blocks) + '\n')
     wav_path = OUTPUT / f'{slug}.wav'
     started = time.monotonic()
-    total = sum(len(block.split()) for block in parser.blocks)
+    total = sum(len(block.split()) for block in blocks)
     completed = 0
     params = None
     with wave.open(str(wav_path), 'wb') as destination:
-        for i, block in enumerate(parser.blocks, 1):
+        for i, block in enumerate(blocks, 1):
             request = urllib.request.Request(server + '/tts', data=urllib.parse.urlencode(
                 {'text': block, 'voice_url': voice}).encode())
             with urllib.request.urlopen(request, timeout=600) as response:
