@@ -7,7 +7,7 @@
     <language>en</language>
     <atom:link href="https://vieux.fr/feed.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Git Isn&#x27;t Dead. Its Servers Are Changing.</title>
+      <title>Rethinking Source Control for Agent Workloads</title>
       <link>https://vieux.fr/git-at-agent-scale/</link>
       <description>How Scion, GitHub, and Cursor separate storage, coordination, and client workflows—and why faster commits do not solve integration.</description>
       <pubDate>Fri, 23 Oct 2026 00:00:00 -0700</pubDate>

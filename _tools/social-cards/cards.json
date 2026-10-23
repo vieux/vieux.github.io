@@ -1,8 +1,8 @@
 [
   {
     "slug": "git-at-agent-scale",
-    "title": "Git Isn't Dead. Its Servers Are Changing.",
-    "subtitle": "The same Git commands. Very different infrastructure.",
+    "title": "Rethinking Source Control for Agent Workloads",
+    "subtitle": "Storage, coordination, and integration at agent scale.",
     "layout": "single",
     "images": [
       "git-at-agent-scale/branches.svg"
