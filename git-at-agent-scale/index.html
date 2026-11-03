@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Rethinking Source Control for Agent Workloads</title>
-    <meta name="description" content="How Scion, GitHub, and Cursor separate storage, coordination, and client workflows—and why faster commits do not solve integration.">
+    <meta name="description" content="How Scion, Pando, Enroute, GitHub, and Cursor separate storage and coordination—and why faster commits do not solve integration.">
     <meta name="author" content="Victor Vieux">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="describedby" href="https://vieux.fr/llms.txt">
@@ -14,15 +14,16 @@
     <meta property="og:site_name" content="Victor Vieux">
     <meta property="og:url" content="https://vieux.fr/git-at-agent-scale/">
     <meta property="og:title" content="Rethinking Source Control for Agent Workloads">
-    <meta property="og:description" content="How Scion, GitHub, and Cursor separate storage, coordination, and client workflows—and why faster commits do not solve integration.">
+    <meta property="og:description" content="How Scion, Pando, Enroute, GitHub, and Cursor separate storage and coordination—and why faster commits do not solve integration.">
     <meta property="og:image" content="https://vieux.fr/git-at-agent-scale/social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="627">
     <meta property="og:image:alt" content="Git branches connecting to shared source control infrastructure">
     <meta property="article:published_time" content="2026-10-23T00:00:00-07:00">
+    <meta property="article:modified_time" content="2026-11-02T18:08:23-08:00">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Rethinking Source Control for Agent Workloads">
-    <meta name="twitter:description" content="How Scion, GitHub, and Cursor separate storage, coordination, and client workflows—and why faster commits do not solve integration.">
+    <meta name="twitter:description" content="How Scion, Pando, Enroute, GitHub, and Cursor separate storage and coordination—and why faster commits do not solve integration.">
     <meta name="twitter:image" content="https://vieux.fr/git-at-agent-scale/social-card.png">
     <meta name="twitter:image:alt" content="Git branches connecting to shared source control infrastructure">
     <script type="application/ld+json">
@@ -36,11 +37,12 @@
         "@id": "https://vieux.fr/git-at-agent-scale/"
       },
       "headline": "Rethinking Source Control for Agent Workloads",
-      "description": "How Scion, GitHub, and Cursor separate storage, coordination, and client workflows—and why faster commits do not solve integration.",
+      "description": "How Scion, Pando, Enroute, GitHub, and Cursor separate storage and coordination—and why faster commits do not solve integration.",
       "image": [
         "https://vieux.fr/git-at-agent-scale/social-card.png"
       ],
       "datePublished": "2026-10-23T00:00:00-07:00",
+      "dateModified": "2026-11-02T18:08:23-08:00",
       "author": {
         "@type": "Person",
         "name": "Victor Vieux",
@@ -58,6 +60,7 @@
         .architecture-figure { margin: 32px 0 40px; }
         .architecture-figure img { display: block; width: 100%; max-width: 720px; margin: 0 auto; border-radius: 14px; }
         .architecture-figure figcaption { max-width: 720px; margin: 12px auto 0; line-height: 1.6; }
+        .article-update { margin: 24px 0; padding: 12px 18px; border-left: 3px solid var(--muted-color); font-size: 0.9em; }
     </style>
     <link rel="stylesheet" href="../assets/read-aloud.css">
     <script src="../assets/read-aloud.js" defer></script>
@@ -94,7 +97,7 @@
         <p class="byline">by <a href="https://vieux.fr/linkedin" rel="me">Victor Vieux</a></p>
 
         <div class="read-aloud read-aloud-recorded" data-read-aloud role="group" aria-label="Listen to this post">
-            <span id="narration-label">Listen to this post <span class="read-aloud-status">— 10:25 · AI narration</span></span>
+            <span id="narration-label">Listen to this post <span class="read-aloud-status">— 12:59 · AI narration</span></span>
             <audio controls preload="none" data-read-aloud-audio aria-labelledby="narration-label">
                 <source src="narration.m4a" type="audio/mp4">
                 <a href="narration.m4a">Download the audio</a>
@@ -109,6 +112,8 @@
                 </select>
             </label>
         </div>
+
+        <p class="article-update"><strong>Update — <time datetime="2026-11-02">November 2, 2026</time>:</strong> Added <a href="#pando">OpenAI’s Pando</a> and <a href="#enroute">Enroute</a>, comparing their choices about consistency, read performance, and Git compatibility.</p>
 
         <p>GitHub is rebuilding its Git infrastructure. Anthropic has moved its monorepo to a new source control system. Cursor has built a Git host of its own. Read those announcements together and it starts to sound like Git is running out of road.</p>
 
@@ -182,6 +187,26 @@
         <p>Shopify CEO Tobi Lütke’s <a href="https://pages.tobi.lutke.com/walgit/" target="_blank" rel="noopener">walgit</a> makes this approach available as an open-source Git server. The project explicitly credits Cursor’s Continuity: a write-ahead log in object storage is authoritative, and a conditional update to a manifest publishes each push. Local repositories are disposable caches.</p>
 
         <p>Walgit also aims to serve repositories larger than the machine hosting them. It can read parts of remote packfiles on demand and serve clone bundles directly from object storage. That makes the architectural idea tangible: a developer can inspect and run an implementation, then evaluate its tradeoffs against their own workload.</p>
+
+        <h2 id="pando">OpenAI changes what readers can assume</h2>
+
+        <p>OpenAI’s <a href="https://openai.com/index/scaling-git-at-openai/" target="_blank" rel="noopener">November 2 post</a> describes Pando, the Git backend now serving its monorepo. Updates to each reference are ordered independently. A reader gets the history needed for the revision it fetches, but reads across several branches do not necessarily describe a single point in time. That weaker guarantee lets unrelated branches advance without repository-wide coordination.</p>
+
+        <p>Pando also reuses stored packfiles across readers instead of computing a custom pack for every fetch. It limits which references it advertises during a push so the resulting pack has dependencies it can track and satisfy for another reader. Background compaction combines packs to keep fetching practical as history grows.</p>
+
+        <p>The tradeoff is redundant data: clients can send or receive objects they otherwise would not need to transfer. The smallest download is not necessarily the cheapest read to serve.</p>
+
+        <p>This also makes compatibility more precise. Pando relies on Git’s <code>packfile-uri</code> feature, and OpenAI distributes its own Git build with improvements it is contributing upstream. Familiar commands can survive while the client capabilities that make the service efficient evolve.</p>
+
+        <h2 id="enroute">Enroute changes the server’s storage layout</h2>
+
+        <p><a href="https://enroute.sh/docs/internals/overview" target="_blank" rel="noopener">Enroute</a> approaches Git hosting like a database. It stores repositories as immutable layers in object storage, with indexes and a commit graph alongside the objects. Compute nodes process pushes in parallel; a per-repository Raft ledger orders the publication of layers and reference updates. Reads use those indexes and stored pack entries without first rebuilding a conventional repository on disk.</p>
+
+        <p>The ledger still provides a shared ordering point. Moving expensive processing off that path makes the ordered step smaller; it does not remove it.</p>
+
+        <p>Durability also differs from Cursor’s approach. Enroute’s <a href="https://enroute.sh/docs/concepts/storage" target="_blank" rel="noopener">storage documentation</a> distinguishes disposable compute caches from ledger nodes that require durable disks. Small pushes can be acknowledged after replication to a majority of ledger nodes, before reaching object storage. The bucket alone may not yet contain the latest accepted changes.</p>
+
+        <p>Enroute explicitly targets stock Git clients with default settings, including no dependency on packfile URIs. Alongside Pando, it shows how much the server can change while making different choices about what to require from clients.</p>
 
         <h2>This did not start with agents</h2>
 
